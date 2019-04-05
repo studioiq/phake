@@ -1,0 +1,15 @@
+# git files
+.gitattributes export-ignore -diff eol=lf working-tree-encoding=UTF-8
+.gitignore export-ignore -diff eol=lf working-tree-encoding=UTF-8
+
+# Various extensions
+.md text eol=lf working-tree-encoding=UTF-8
+.sh text eol=lf working-tree-encoding=UTF-8
+.php text eol=lf working-tree-encoding=UTF-8
+.json text eol=lf working-tree-encoding=UTF-8
+.editorconfig text eol=lf working-tree-encoding=UTF-8
+.yml text eol=lf working-tree-encoding=UTF-8
+.dist text eol=lf working-tree-encoding=UTF-8
+
+example/Phakefile text eol=lf working-tree-encoding=UTF-8
+bin/phake binary
