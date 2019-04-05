@@ -1,29 +1,36 @@
 {
-  "name" : "studioiq/phake",
-  "description" : "A task runner inspired by Ruby's Rake",
-  "keywords" : ["Tasks","CLI","automation"],
-  "homepage" : "https://github.com/studioiq/phake",
-  "version" : "1.0.1",
-  "type" : "library",
-  "license": "MIT",
-  "readme" : "./README.md",
-  "authors": [
-    {
-      "name": "Jason Frame",
-      "email": "jason@onehackoranother.com"
-    },
-    {
-      "name" : "Studio IQ Developers",
-      "email" : "developers@studioiq.com.au"
-    }
-  ],
-  "autoload": {
-    "psr-0": {
-      "phake": "lib/"
-    }
-  },
-  "bin": ["bin/phake"],
-  "require": {
-    "php": ">=5.3.0"
-  }
+	"name": "studioiq/phake",
+	"description": "A task runner inspired by Ruby's Rake",
+	"keywords": [
+		"Tasks",
+		"CLI",
+		"automation"
+	],
+	"homepage": "https://github.com/studioiq/phake",
+	"version": "1.0.1",
+	"type": "library",
+	"license": "MIT",
+	"readme": "./README.md",
+	"authors": [
+		{
+			"name": "Jason Frame",
+			"email": "jason@onehackoranother.com"
+		},
+		{
+			"name": "Studio IQ Developers",
+			"email": "developers@studioiq.com.au"
+		}
+	],
+	"autoload": {
+		"psr-0": {
+			"phake": "lib/",
+			"StudioIQ\\Phake": "lib/custom"
+		}
+	},
+	"bin": [
+		"bin/phake"
+	],
+	"require": {
+		"php": ">=5.3.0"
+	}
 }

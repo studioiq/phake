@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace StudioIQ\Phake;
+
 require_once 'Terminal.php';
 require_once 'OS.php';
 
