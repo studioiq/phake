@@ -3,7 +3,7 @@
 require_once 'Terminal.php';
 require_once 'OS.php';
 
-// TODO - Replace all this Terminal execute nonsense with https://github.com/docker-php/docker-php
+// TODO - Replace all this with https://github.com/docker-php/docker-php
 
 class Docker {
 
