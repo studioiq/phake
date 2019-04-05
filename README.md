@@ -8,12 +8,18 @@ A wee clone of Ruby's `rake` for PHP 5.3. Uses closures for ultimate coolness.
 
 Questions abut `phake`? Come and chat in `#phake` on Freenode!
 
+Custom Library
+--------------
+
+Various facilities have been created to work with Docker, the Shell and so on. These files are all in the lib/custom directory.
+These functions will then be available in any Phakefiles which incorporate this repository via Composer.
+
 Usage
 -----
 
-  * Download
-  * Create a `Phakefile` in the current directory or a parent directory
-  * Invoke `./phake task:name` to invoke task or `./phake -T` to list defined tasks
+* Download
+* Create a `Phakefile` in the current directory or a parent directory
+* Invoke `./phake task:name` to invoke task or `./phake -T` to list defined tasks
   
 Defining Tasks
 --------------
@@ -23,7 +29,7 @@ Define tasks like this:
     task('dependency1', function() {
         echo "i will run first!\n";
     });
-    
+
     task('dependency2', function() {
         echo "i will run second!\n";
     });
@@ -31,7 +37,7 @@ Define tasks like this:
     task('task_name', 'dependency1', 'dependency2', function() {
         echo "i will run last!\n";
     });
-    
+
 This task would be invoked from the command line by `./phake task_name`
 
 Task bodies are optional if you want to create some sort of "super-task" that just invokes a bunch of others:
@@ -53,7 +59,7 @@ Like Rake, we can group tasks:
             echo "i'm initialising the database\n";
         });
     });
-    
+
 This would be invoked by `./phake db:init`
 
 Describing Tasks
@@ -63,7 +69,7 @@ Call `desc()` immediately before defining a task to set its description:
 
     desc("Initialises the database");
     task('db_init', function() { echo "oh hai it's a database\n"; });
-    
+
 Output from `./phake -T`:
 
     db_init    Initialises the database
@@ -75,7 +81,7 @@ Sometimes you may want to specify that some code should run before or after a ta
 
     before('foo', function() { ... });
     after('baz:bar', function() { ... });
-    
+
 Task Arguments
 --------------
 
@@ -83,7 +89,7 @@ Phake allows arguments to specified on the command line:
 
     # Execute task `quux` with the given args
     ./phake quux name=Jason city=Glasgow
-    
+
 This format must be matched exactly; do not put spaces between `=` and the argument name/value. If you need to put spaces in the argument value, place the entire assignment in quotes.
 
 Arguments are made available to tasks by the application object's `ArrayAccess` implementation:
@@ -103,7 +109,7 @@ To abort execution of a task sequence, simply throw an exception.
     task('fail', function() {
         throw new Exception;
     });
-    
+
 Running `phake fail` will yield:
 
     - jason@disco phake % ./bin/phake fail
@@ -130,7 +136,7 @@ This is what a complete `Phakefile` might look like. It also highlights some of 
     });
 
     group('test', function() {
-    
+
         // 'environment' dependency for this task is resolved locally to
         // task in same group. There is no 'database' task defined in this
         // group so it drops back to a search of the root group.
@@ -138,7 +144,7 @@ This is what a complete `Phakefile` might look like. It also highlights some of 
         task('units', 'environment', ':environment', 'database', function() {
             echo "Running unit tests...\n";
         });
-    
+
         // another level of nesting; application object is passed to all
         // executing tasks
         group('all', function() {
@@ -152,25 +158,25 @@ This is what a complete `Phakefile` might look like. It also highlights some of 
 
     // duplicate group definitions are merged
     group('test', function() {
-    
+
         // duplicate task definitions are merged
         // (although the first description takes precedence when running with -T)
         desc("You won't see this description");
         task('units', function() {
             echo "Running a second batch of unit tests...\n";
         });
-    
+
         // use ':environment' to refer to task in root group
         // we currently have no cyclic dependency checking, you have been warned.
         task('environment', ':environment', function() {
             echo "I am the inner environment. I should run second.\n";
         });
-    
+
     });
 
     task('default', 'test:all:run');
     ?>
-    
+
 Here's the output from `./phake` (implied task to run is `default`):
 
     jason@ratchet phake [master*] $ ./phake
@@ -181,7 +187,7 @@ Here's the output from `./phake` (implied task to run is `default`):
     Running unit tests...
     Running a second batch of unit tests...
     All tests complete! (<phake\Application>)
-    
+
 And the corresponding output from `phake -T`:
 
     jason@ratchet phake [master*] $ ./phake -T
