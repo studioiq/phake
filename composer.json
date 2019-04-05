@@ -3,7 +3,7 @@
   "description" : "A task runner inspired by Ruby's Rake",
   "keywords" : ["Tasks","CLI","automation"],
   "homepage" : "https://github.com/studioiq/phake",
-  "version" : "1.0.1", 
+  "version" : "1.0.1",
   "type" : "library",
   "license": "MIT",
   "readme" : "./README.md",
@@ -18,7 +18,7 @@
     }
   ],
   "autoload": {
-    "psr-4": {
+    "psr-0": {
       "phake": "lib/"
     }
   },
